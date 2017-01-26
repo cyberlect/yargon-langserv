@@ -1,0 +1,37 @@
+version: "#{build}"
+os: Visual Studio 2015
+configuration: Release
+
+before_build:
+- ps: dotnet --info
+- ps: dotnet restore --verbosity detailed
+
+test_script:
+- ps: dotnet test -c $env:CONFIGURATION ./test/Yargon.LangServ.Tests
+
+after_test:
+- ps: dotnet pack -c $env:CONFIGURATION src/Yargon.LangServ/
+
+artifacts:
+- path: 'src/Yargon.LangServ/bin/Release/*.nupkg'
+  name: NuGet Packages
+
+deploy:
+- provider: GitHub
+  description: ""
+  auth_token:
+    secure: gxD+NTodnQNMMljEkLwbmfQdsyBZFRIioVMM+RQSFD3+h1GEgsEGuINxcfNgVceY
+  artifact: /.*\.nupkg/
+  draft: true
+  prerelease: true
+  on:
+    branch: master
+    appveyor_repo_tag: true
+- provider: NuGet
+  api_key:
+    secure: 80Ifo8pBjEsFrG2mn50qSl7+uFgquQSareLS3l21DfWT49nFtb/SZsHSkR/DRDsO
+  skip_symbols: true
+  artifact: /.*\.nupkg/
+  on:
+    branch: master
+    appveyor_repo_tag: true

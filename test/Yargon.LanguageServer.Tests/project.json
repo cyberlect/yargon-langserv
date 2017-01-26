@@ -1,0 +1,28 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "title": "Yargon Language Server Tests",
+  "copyright": "Copyright - Daniel Pelsmaeker",
+
+  "testRunner": "nunit",
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "NUnit": "3.4.1",
+    "dotnet-test-nunit": "3.4.0-beta-2",
+    "Moq": "4.6.38-alpha",
+    "Yargon.LanguageServer": "1.0.0-*"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": "portable-net45+win8",
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0-*",
+          "type": "platform"
+        }
+      }
+    }
+  }
+}
