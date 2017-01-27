@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -13,11 +14,13 @@ namespace Yargon.JsonRpc
     /// </summary>
     internal sealed class JsonResponseConverter : JsonConverter
     {
+        /// <inheritdoc />
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             #region Contract
@@ -34,9 +37,10 @@ namespace Yargon.JsonRpc
                 throw new InvalidOperationException("Json response has neither 'result' nor 'error' field.");
         }
 
+        /// <inheritdoc />
         public override bool CanConvert(Type objectType)
         {
-            throw new NotImplementedException();
+            return objectType == typeof(JsonResponse);
         }
     }
 }
