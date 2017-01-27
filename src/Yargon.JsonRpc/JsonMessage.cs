@@ -37,8 +37,8 @@ namespace Yargon.JsonRpc
         /// Initializes a new instance of the <see cref="JsonMessage"/> class.
         /// </summary>
         /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
-        /// <param name="jsonrpc">The JSON RPC protocol version; or <see langword="null"/> to use the default.</param>
-        internal JsonMessage([CanBeNull] object id, [CanBeNull] string jsonrpc)
+        /// <param name="jsonrpc">The JSON RPC protocol version.</param>
+        internal JsonMessage([CanBeNull] object id, string jsonrpc)
         {
             #region Contract
             if (!IsValidIdentifier(id))
@@ -110,14 +110,13 @@ namespace Yargon.JsonRpc
         /// <summary>
         /// Determines whether the specified JSON RPC protocol version is valid.
         /// </summary>
-        /// <param name="version">The version string; or <see langword="null"/>.</param>
+        /// <param name="version">The version string.</param>
         /// <returns><see langword="true"/> when the version string is valid;
         /// otherwise, <see langword="false"/>.</returns>
         [Pure]
-        public static bool IsValidProtocolVersion([CanBeNull] string version)
+        public static bool IsValidProtocolVersion(string version)
         {
-            return version == null
-                || version == "2.0";
+            return version == "2.0";
         }
 
         /// <inheritdoc />

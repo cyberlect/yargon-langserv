@@ -31,9 +31,9 @@ namespace Yargon.JsonRpc
         /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
         /// <param name="method">The method name.</param>
         /// <param name="parameters">The method arguments; or <see langword="null"/>.</param>
-        /// <param name="jsonrpc">The JSON RPC protocol version; or <see langword="null"/> to use the default.</param>
+        /// <param name="jsonrpc">The JSON RPC protocol version string.</param>
         [JsonConstructor]
-        public JsonRequest([CanBeNull] object id, string method, [CanBeNull] JToken parameters, [CanBeNull] string jsonrpc)
+        public JsonRequest([CanBeNull] object id, string method, [CanBeNull] JToken parameters, string jsonrpc)
             : base(id, jsonrpc)
         {
             #region Contract
@@ -54,7 +54,7 @@ namespace Yargon.JsonRpc
         /// <param name="method">The method name.</param>
         /// <param name="parameters">The method arguments; or <see langword="null"/>.</param>
         public JsonRequest([CanBeNull] object id, string method, [CanBeNull] JToken parameters)
-            : this(id, method, parameters, null)
+            : this(id, method, parameters, DefaultProtocolVersion)
         {
             // Nothing to do.
         }

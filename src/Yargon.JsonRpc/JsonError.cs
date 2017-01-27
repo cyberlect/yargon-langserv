@@ -10,7 +10,7 @@ namespace Yargon.JsonRpc
     /// <summary>
     /// A JSON error.
     /// </summary>
-    public class JsonError : JsonResponse
+    public sealed class JsonError : JsonResponse
     {
         /// <summary>
         /// Gets the error object.
@@ -25,9 +25,9 @@ namespace Yargon.JsonRpc
         /// </summary>
         /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
         /// <param name="error">The error object.</param>
-        /// <param name="jsonrpc">The JSON RPC protocol version; or <see langword="null"/> to use the default.</param>
+        /// <param name="jsonrpc">The JSON RPC protocol version string.</param>
         [JsonConstructor]
-        internal JsonError([CanBeNull] object id, JsonErrorObject error, [CanBeNull] string jsonrpc)
+        internal JsonError([CanBeNull] object id, JsonErrorObject error, string jsonrpc)
             : base(id, jsonrpc)
         {
             #region Contract
@@ -44,7 +44,7 @@ namespace Yargon.JsonRpc
         /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
         /// <param name="error">The error object.</param>
         internal JsonError([CanBeNull] object id, JsonErrorObject error)
-            : this(id, error, null)
+            : this(id, error, DefaultProtocolVersion)
         {
             // Nothing to do.
         }
