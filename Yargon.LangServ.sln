@@ -16,6 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Yargon.JsonRpc", "src\Yargon.JsonRpc\Yargon.JsonRpc.xproj", "{66018A86-5ED8-4251-B482-4A0D0A838064}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Yargon.JsonRpc.Tests", "test\Yargon.JsonRpc.Tests\Yargon.JsonRpc.Tests.xproj", "{F2BF81FD-0BE5-4170-A74B-D84463B8DBD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +34,14 @@ Global
 		{01AC1D51-E866-40D5-869C-DA61F5F33B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01AC1D51-E866-40D5-869C-DA61F5F33B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01AC1D51-E866-40D5-869C-DA61F5F33B37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66018A86-5ED8-4251-B482-4A0D0A838064}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66018A86-5ED8-4251-B482-4A0D0A838064}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66018A86-5ED8-4251-B482-4A0D0A838064}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66018A86-5ED8-4251-B482-4A0D0A838064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2BF81FD-0BE5-4170-A74B-D84463B8DBD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2BF81FD-0BE5-4170-A74B-D84463B8DBD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2BF81FD-0BE5-4170-A74B-D84463B8DBD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2BF81FD-0BE5-4170-A74B-D84463B8DBD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,5 +49,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6A613BA3-3FFC-42A0-92CA-568E3F218C18} = {738A0CD4-77E3-4C89-8AF8-6152B12034D6}
 		{01AC1D51-E866-40D5-869C-DA61F5F33B37} = {D3352B28-726B-4387-8B5A-97CDC0E992DD}
+		{66018A86-5ED8-4251-B482-4A0D0A838064} = {738A0CD4-77E3-4C89-8AF8-6152B12034D6}
+		{F2BF81FD-0BE5-4170-A74B-D84463B8DBD9} = {D3352B28-726B-4387-8B5A-97CDC0E992DD}
 	EndGlobalSection
 EndGlobal

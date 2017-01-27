@@ -1,7 +1,7 @@
 ﻿{
   "version": "1.0.0-*",
 
-  "title": "Yargon Language Server Tests",
+  "title": "Yargon Json RPC Tests",
   "copyright": "Copyright - Daniel Pelsmaeker",
 
   "testRunner": "nunit",
@@ -11,7 +11,7 @@
     "NUnit": "3.6.0",
     "dotnet-test-nunit": "3.4.0-beta-3",
     "Moq": "4.6.38-alpha",
-    "Yargon.LanguageServer": "1.0.0-*"
+    "Yargon.JsonRpc": "1.0.0-*"
   },
 
   "frameworks": {

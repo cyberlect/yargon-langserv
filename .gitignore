@@ -1,3 +1,6 @@
+doc/
+
+
 ### DotNet Core ###
 project.lock.json
 [Bb]in/

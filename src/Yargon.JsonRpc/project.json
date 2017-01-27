@@ -1,15 +1,15 @@
 {
   "version": "1.0.0-*",
 
-  "title": "Yargon Language Server",
+  "title": "Yargon JSON Rpc",
   "copyright": "Copyright - Daniel Pelsmaeker",
-  "description": "An implementation of the Language Server Protocol.",
+  "description": "An implementation of the JSON 2.0 RPC protocol.",
 
   "authors": [ "Daniel Pelsmaeker" ],
 
   "packOptions": {
-    "summary": "An implementation of the Language Server Protocol.",
-    "tags": [ "cyberlect", "language", "server", "protocol", "virtlink", "lsp", "service" ],
+    "summary": "An implementation of the JSON 2.0 RPC protocol.",
+    "tags": [ "cyberlect", "json", "rpc", "protocol", "virtlink", ],
     "projectUrl": "https://github.com/Cyberlect/yargon-langserv/",
     "licenseUrl": "https://github.com/Cyberlect/yargon-langserv/blob/master/License.md",
 
@@ -20,6 +20,8 @@
   },
 
   "dependencies": {
+    "Newtonsoft.Json": "9.0.1",
+    "Virtlink.Utilib": "1.14.0"
   },
 
   "frameworks": {
