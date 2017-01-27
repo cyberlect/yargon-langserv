@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyConfiguration("")]
@@ -6,3 +7,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("Yargon.JsonRpc")]
 [assembly: AssemblyTrademark("")]
 [assembly: ComVisible(false)]
+[assembly: InternalsVisibleTo("Yargon.JsonRpc.Tests")]

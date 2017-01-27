@@ -31,9 +31,10 @@ namespace Yargon.JsonRpc
         /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
         /// <param name="method">The method name.</param>
         /// <param name="parameters">The method arguments; or <see langword="null"/>.</param>
+        /// <param name="jsonrpc">The JSON RPC protocol version; or <see langword="null"/> to use the default.</param>
         [JsonConstructor]
-        public JsonRequest([CanBeNull] object id, string method, [CanBeNull] JToken parameters)
-            : base(id)
+        public JsonRequest([CanBeNull] object id, string method, [CanBeNull] JToken parameters, [CanBeNull] string jsonrpc)
+            : base(id, jsonrpc)
         {
             #region Contract
             if (method == null)
@@ -46,6 +47,17 @@ namespace Yargon.JsonRpc
             this.Parameters = parameters ?? JValue.CreateNull();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JsonRequest"/> class.
+        /// </summary>
+        /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
+        /// <param name="method">The method name.</param>
+        /// <param name="parameters">The method arguments; or <see langword="null"/>.</param>
+        public JsonRequest([CanBeNull] object id, string method, [CanBeNull] JToken parameters)
+            : this(id, method, parameters, null)
+        {
+            // Nothing to do.
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonRequest"/> class.
@@ -59,15 +71,13 @@ namespace Yargon.JsonRpc
         }
         #endregion
 
-            #region Equality
-            /// <inheritdoc />
+        #region Equality
+        /// <inheritdoc />
         public bool Equals(JsonRequest other)
         {
-            if (Object.ReferenceEquals(other, null))
-                return false;
-            return this.Method == other.Method
-                   && JToken.DeepEquals(this.Parameters, other.Parameters)
-                   && base.Equals(other);
+            return base.Equals(other)
+                && this.Method == other.Method
+                && JToken.DeepEquals(this.Parameters, other.Parameters);
         }
 
         /// <inheritdoc />

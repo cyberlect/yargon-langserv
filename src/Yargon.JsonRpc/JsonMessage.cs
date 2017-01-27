@@ -12,6 +12,19 @@ namespace Yargon.JsonRpc
     public abstract class JsonMessage
     {
         /// <summary>
+        /// Gets the default JSON RPC protocol version string.
+        /// </summary>
+        /// <value>The default version string.</value>
+        public static string DefaultProtocolVersion => "2.0";
+
+        /// <summary>
+        /// Gets the JSON RPC protocol version.
+        /// </summary>
+        /// <value>The version string.</value>
+        [JsonProperty("jsonrpc")]
+        public string ProtocolVersion { get; }
+
+        /// <summary>
         /// Gets the message identifier.
         /// </summary>
         /// <value>The identifier, which is either a string, a number, or <see langword="null"/>.</value>
@@ -24,14 +37,18 @@ namespace Yargon.JsonRpc
         /// Initializes a new instance of the <see cref="JsonMessage"/> class.
         /// </summary>
         /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
-        protected JsonMessage([CanBeNull] object id)
+        /// <param name="jsonrpc">The JSON RPC protocol version; or <see langword="null"/> to use the default.</param>
+        internal JsonMessage([CanBeNull] object id, [CanBeNull] string jsonrpc)
         {
             #region Contract
             if (!IsValidIdentifier(id))
                 throw new ArgumentException("The identifier is not valid. It must either be a string, a number, or null.", nameof(id));
+            if (!IsValidProtocolVersion(jsonrpc))
+                throw new ArgumentException("The JSON RPC protocol version string is invalid.", nameof(jsonrpc));
             #endregion
             
             this.Id = id;
+            this.ProtocolVersion = jsonrpc ?? DefaultProtocolVersion;
         }
         #endregion
 
@@ -41,7 +58,8 @@ namespace Yargon.JsonRpc
         {
             if (Object.ReferenceEquals(other, null))
                 return false;
-            return CompareIds(this.Id, other.Id);
+            return this.ProtocolVersion == other.ProtocolVersion
+                && CompareIds(this.Id, other.Id);
         }
 
         /// <summary>
@@ -65,6 +83,7 @@ namespace Yargon.JsonRpc
             int hash = 17;
             unchecked
             {
+                hash = hash * 29 + this.ProtocolVersion.GetHashCode();
                 hash = hash * 29 + this.Id?.GetHashCode() ?? 0;
             }
             return hash;
@@ -88,10 +107,23 @@ namespace Yargon.JsonRpc
                 || (id is string && (string)id != "");
         }
 
+        /// <summary>
+        /// Determines whether the specified JSON RPC protocol version is valid.
+        /// </summary>
+        /// <param name="version">The version string; or <see langword="null"/>.</param>
+        /// <returns><see langword="true"/> when the version string is valid;
+        /// otherwise, <see langword="false"/>.</returns>
+        [Pure]
+        public static bool IsValidProtocolVersion([CanBeNull] string version)
+        {
+            return version == null
+                || version == "2.0";
+        }
+
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"id: {this.Id}";
+            return this.Id?.ToString() ?? "-";
         }
     }
 }
