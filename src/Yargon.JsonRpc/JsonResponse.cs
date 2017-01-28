@@ -10,7 +10,8 @@ namespace Yargon.JsonRpc
     /// <summary>
     /// A JSON response.
     /// </summary>
-    public abstract class JsonResponse : JsonMessage
+    [JsonConverter(typeof(JsonResponse.Converter))]
+    public abstract partial class JsonResponse : JsonMessage
     {
         #region Constructors
         /// <summary>
