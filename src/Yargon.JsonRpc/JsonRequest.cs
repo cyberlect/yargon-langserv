@@ -28,12 +28,12 @@ namespace Yargon.JsonRpc
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonRequest"/> class.
         /// </summary>
-        /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
+        /// <param name="id">The message identifier string; or <see langword="null"/>.</param>
         /// <param name="method">The method name.</param>
         /// <param name="parameters">The method arguments; or <see langword="null"/>.</param>
         /// <param name="jsonrpc">The JSON RPC protocol version string.</param>
         [JsonConstructor]
-        public JsonRequest([CanBeNull] object id, string method, [CanBeNull] JToken parameters, string jsonrpc)
+        public JsonRequest([CanBeNull] string id, string method, [CanBeNull] JToken parameters, string jsonrpc)
             : base(id, jsonrpc)
         {
             #region Contract
@@ -50,10 +50,10 @@ namespace Yargon.JsonRpc
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonRequest"/> class.
         /// </summary>
-        /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
+        /// <param name="id">The message identifier string; or <see langword="null"/>.</param>
         /// <param name="method">The method name.</param>
         /// <param name="parameters">The method arguments; or <see langword="null"/>.</param>
-        public JsonRequest([CanBeNull] object id, string method, [CanBeNull] JToken parameters)
+        public JsonRequest([CanBeNull] string id, string method, [CanBeNull] JToken parameters)
             : this(id, method, parameters, DefaultProtocolVersion)
         {
             // Nothing to do.
@@ -62,9 +62,9 @@ namespace Yargon.JsonRpc
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonRequest"/> class.
         /// </summary>
-        /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
+        /// <param name="id">The message identifier string; or <see langword="null"/>.</param>
         /// <param name="method">The method name.</param>
-        public JsonRequest([CanBeNull] object id, string method)
+        public JsonRequest([CanBeNull] string id, string method)
             : this(id, method, null)
         {
             // Nothing to do.

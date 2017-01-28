@@ -24,11 +24,11 @@ namespace Yargon.JsonRpc
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonResult"/> class.
         /// </summary>
-        /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
+        /// <param name="id">The message identifier string; or <see langword="null"/>.</param>
         /// <param name="result">The result object.</param>
         /// <param name="jsonrpc">The JSON RPC protocol version string.</param>
         [JsonConstructor]
-        internal JsonResult([CanBeNull] object id, JToken result, string jsonrpc)
+        internal JsonResult([CanBeNull] string id, JToken result, string jsonrpc)
             : base(id, jsonrpc)
         {
             #region Contract
@@ -42,9 +42,9 @@ namespace Yargon.JsonRpc
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonResult"/> class.
         /// </summary>
-        /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
+        /// <param name="id">The message identifier string; or <see langword="null"/>.</param>
         /// <param name="result">The result object.</param>
-        internal JsonResult([CanBeNull] object id, JToken result)
+        internal JsonResult([CanBeNull] string id, JToken result)
             : this(id, result, DefaultProtocolVersion)
         {
             // Nothing to do.

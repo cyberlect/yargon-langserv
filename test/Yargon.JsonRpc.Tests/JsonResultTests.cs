@@ -15,7 +15,7 @@ namespace Yargon.JsonRpc
         public void SimpleResult_ShouldSerializeThenDeserializeBackToEqualResult()
         {
             // Arrange
-            var resultMsg = new JsonResult(1, new JValue(7));
+            var resultMsg = new JsonResult("1", new JValue(7));
 
             // Act
             var json = JsonConvert.SerializeObject(resultMsg);
@@ -29,7 +29,7 @@ namespace Yargon.JsonRpc
         public void SimpleResult_ShouldSerializeTwiceToSameJson()
         {
             // Arrange
-            var resultMsg = new JsonResult(1, new JValue(7));
+            var resultMsg = new JsonResult("1", new JValue(7));
 
             // Act
             var json1 = JsonConvert.SerializeObject(resultMsg);
@@ -53,7 +53,7 @@ namespace Yargon.JsonRpc
             var result = JsonConvert.DeserializeObject<JsonResult>(json);
 
             // Assert
-            var expected = new JsonResult(1, new JValue(7));
+            var expected = new JsonResult("1", new JValue(7));
             Assert.That(result, Is.EqualTo(expected));
         }
 
@@ -61,7 +61,7 @@ namespace Yargon.JsonRpc
         public void ComplexResult_ShouldSerializeThenDeserializeBackToEqualResult()
         {
             // Arrange
-            var resultMsg = new JsonResult(1, new JArray { "hello", 5 });
+            var resultMsg = new JsonResult("1", new JArray { "hello", 5 });
 
             // Act
             var json = JsonConvert.SerializeObject(resultMsg);
@@ -75,7 +75,7 @@ namespace Yargon.JsonRpc
         public void ComplexResult_ShouldSerializeTwiceToSameJson()
         {
             // Arrange
-            var resultMsg = new JsonResult(1, new JArray { "hello", 5 });
+            var resultMsg = new JsonResult("1", new JArray { "hello", 5 });
 
             // Act
             var json1 = JsonConvert.SerializeObject(resultMsg);
@@ -99,7 +99,7 @@ namespace Yargon.JsonRpc
             var result = JsonConvert.DeserializeObject<JsonResult>(json);
 
             // Assert
-            var expected = new JsonResult(1, new JArray { "hello", 5 });
+            var expected = new JsonResult("1", new JArray { "hello", 5 });
             Assert.That(result, Is.EqualTo(expected));
         }
     }

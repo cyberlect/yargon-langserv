@@ -1,7 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using Virtlink.Utilib;
 
 namespace Yargon.JsonRpc
 {
@@ -27,22 +26,20 @@ namespace Yargon.JsonRpc
         /// <summary>
         /// Gets the message identifier.
         /// </summary>
-        /// <value>The identifier, which is either a string, a number, or <see langword="null"/>.</value>
+        /// <value>The identifier string; or <see langword="null"/>.</value>
         [CanBeNull]
         [JsonProperty("id")]
-        public object Id { get; }
+        public string Id { get; }
 
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonMessage"/> class.
         /// </summary>
-        /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
+        /// <param name="id">The message identifier string; or <see langword="null"/>.</param>
         /// <param name="jsonrpc">The JSON RPC protocol version.</param>
-        internal JsonMessage([CanBeNull] object id, string jsonrpc)
+        internal JsonMessage([CanBeNull] string id, string jsonrpc)
         {
             #region Contract
-            if (!IsValidIdentifier(id))
-                throw new ArgumentException("The identifier is not valid. It must either be a string, a number, or null.", nameof(id));
             if (!IsValidProtocolVersion(jsonrpc))
                 throw new ArgumentException("The JSON RPC protocol version string is invalid.", nameof(jsonrpc));
             #endregion
@@ -59,22 +56,7 @@ namespace Yargon.JsonRpc
             if (Object.ReferenceEquals(other, null))
                 return false;
             return this.ProtocolVersion == other.ProtocolVersion
-                && CompareIds(this.Id, other.Id);
-        }
-
-        /// <summary>
-        /// Compares two IDs.
-        /// </summary>
-        /// <param name="thisId">This ID.</param>
-        /// <param name="otherId">The other ID.</param>
-        /// <returns><see langword="true"/> when the IDs are equal;
-        /// otherwise, <see langword="false"/>.</returns>
-        private static bool CompareIds(object thisId, object otherId)
-        {
-            if (Numeric.HasNumericType(thisId) && Numeric.HasNumericType(otherId))
-                return Numeric.Compare(thisId, otherId) == 0;
-            else
-                return Object.Equals(thisId, otherId);
+                && this.Id == other.Id;
         }
 
         /// <inheritdoc />
@@ -92,20 +74,6 @@ namespace Yargon.JsonRpc
         /// <inheritdoc />
         public override bool Equals(object obj) => Equals(obj as JsonMessage);
         #endregion
-        
-        /// <summary>
-        /// Determines whether the specified identifier is valid.
-        /// </summary>
-        /// <param name="id">The identifier to check.</param>
-        /// <returns><see langword="true"/> when the identifier is valid;
-        /// otherwise, <see langword="false"/>.</returns>
-        [Pure]
-        public static bool IsValidIdentifier(object id)
-        {
-            return id == null
-                || Numeric.HasIntegerType(id)
-                || (id is string && (string)id != "");
-        }
 
         /// <summary>
         /// Determines whether the specified JSON RPC protocol version is valid.
@@ -122,7 +90,7 @@ namespace Yargon.JsonRpc
         /// <inheritdoc />
         public override string ToString()
         {
-            return this.Id?.ToString() ?? "-";
+            return this.Id ?? "-";
         }
     }
 }

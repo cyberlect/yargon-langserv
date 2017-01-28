@@ -15,7 +15,7 @@ namespace Yargon.JsonRpc
         public void SimpleRequest_ShouldSerializeThenDeserializeBackToEqualRequest()
         {
             // Arrange
-            var request = new JsonRequest(1, "foobar");
+            var request = new JsonRequest("1", "foobar");
 
             // Act
             var json = JsonConvert.SerializeObject(request);
@@ -29,7 +29,7 @@ namespace Yargon.JsonRpc
         public void SimpleRequest_ShouldSerializeTwiceToSameJson()
         {
             // Arrange
-            var request = new JsonRequest(1, "foobar");
+            var request = new JsonRequest("1", "foobar");
 
             // Act
             var json1 = JsonConvert.SerializeObject(request);
@@ -53,7 +53,7 @@ namespace Yargon.JsonRpc
             var result = JsonConvert.DeserializeObject<JsonRequest>(json);
 
             // Assert
-            var expected = new JsonRequest(1, "foobar");
+            var expected = new JsonRequest("1", "foobar");
             Assert.That(result, Is.EqualTo(expected));
         }
 
@@ -107,7 +107,7 @@ namespace Yargon.JsonRpc
         public void RequestWithComplexParams_ShouldSerializeThenDeserializeBackToEqualRequest()
         {
             // Arrange
-            var request = new JsonRequest(3, "subtract", new JObject
+            var request = new JsonRequest("3", "subtract", new JObject
             {
                 { "subtrahend", 23 },
                 {  "minuend", 42 }
@@ -125,7 +125,7 @@ namespace Yargon.JsonRpc
         public void RequestWithComplexParams_ShouldSerializeTwiceToSameJson()
         {
             // Arrange
-            var request = new JsonRequest(3, "subtract", new JObject
+            var request = new JsonRequest("3", "subtract", new JObject
             {
                 { "subtrahend", 23 },
                 { "minuend", 42 }
@@ -157,7 +157,7 @@ namespace Yargon.JsonRpc
             var result = JsonConvert.DeserializeObject<JsonRequest>(json);
 
             // Assert
-            var expected = new JsonRequest(3, "subtract", new JObject
+            var expected = new JsonRequest("3", "subtract", new JObject
             {
                 { "subtrahend", 23 },
                 {  "minuend", 42 }

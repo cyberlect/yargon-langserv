@@ -16,10 +16,10 @@ namespace Yargon.JsonRpc
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonResponse"/> class.
         /// </summary>
-        /// <param name="id">The message identifier, which is either a string, a number, or <see langword="null"/>.</param>
+        /// <param name="id">The message identifier string; or <see langword="null"/>.</param>
         /// <param name="jsonrpc">The JSON RPC protocol version string.</param>
         [JsonConstructor]
-        internal JsonResponse([CanBeNull] object id, string jsonrpc)
+        internal JsonResponse([CanBeNull] string id, string jsonrpc)
             : base(id, jsonrpc)
         {
             // Nothing to do.
