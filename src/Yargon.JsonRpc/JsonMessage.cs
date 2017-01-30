@@ -31,6 +31,18 @@ namespace Yargon.JsonRpc
         [JsonProperty("id")]
         public string Id { get; }
 
+        // NOTE: We treat any message where `id=null` as a notification.
+        // This is not strictly correct according to the specification,
+        // as it distinguishes between `id=null` and `id` is absent, where
+        // only the latter should be treated as a notification.
+
+        /// <summary>
+        /// Gets whether this message is a notification.
+        /// </summary>
+        /// <value><see langword="true"/> when this message is a notification;
+        /// otherwise, <see langword="false"/>.</value>
+        public bool IsNotification => this.Id == null;
+
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonMessage"/> class.

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Virtlink.Utilib.Collections;
 
 namespace Yargon.JsonRpc
@@ -16,7 +14,7 @@ namespace Yargon.JsonRpc
         /// <summary>
         /// Gets the messages in the batch.
         /// </summary>
-        /// <value>The messages.</value>
+        /// <value>The messages, each of which may be <see langword="null"/>.</value>
         public IReadOnlyList<T> Messages { get; }
 
         /// <summary>

@@ -19,7 +19,7 @@ namespace Yargon.JsonRpc
 
             // Act
             var json = JsonConvert.SerializeObject(error);
-            var result = JsonConvert.DeserializeObject<JsonError>(json, new JsonResponse.Converter());
+            var result = JsonConvert.DeserializeObject<JsonError>(json);
 
             // Assert
             Assert.That(result, Is.EqualTo(error));
@@ -33,7 +33,7 @@ namespace Yargon.JsonRpc
 
             // Act
             var json1 = JsonConvert.SerializeObject(error);
-            var json2 = JsonConvert.SerializeObject(JsonConvert.DeserializeObject<JsonError>(json1, new JsonResponse.Converter()));
+            var json2 = JsonConvert.SerializeObject(JsonConvert.DeserializeObject<JsonError>(json1));
 
             // Assert
             Assert.That(json2, Is.EqualTo(json1));
@@ -53,7 +53,7 @@ namespace Yargon.JsonRpc
             }";
 
             // Act
-            var result = JsonConvert.DeserializeObject<JsonError>(json, new JsonResponse.Converter());
+            var result = JsonConvert.DeserializeObject<JsonError>(json);
 
             // Assert
             var expected = new JsonError(null, new JsonErrorObject(-32600, "Invalid Request"));
@@ -68,7 +68,7 @@ namespace Yargon.JsonRpc
 
             // Act
             var json = JsonConvert.SerializeObject(resultMsg);
-            var result = JsonConvert.DeserializeObject<JsonResult>(json, new JsonResponse.Converter());
+            var result = JsonConvert.DeserializeObject<JsonResult>(json);
 
             // Assert
             Assert.That(result, Is.EqualTo(resultMsg));
@@ -82,7 +82,7 @@ namespace Yargon.JsonRpc
 
             // Act
             var json1 = JsonConvert.SerializeObject(resultMsg);
-            var json2 = JsonConvert.SerializeObject(JsonConvert.DeserializeObject<JsonResult>(json1, new JsonResponse.Converter()));
+            var json2 = JsonConvert.SerializeObject(JsonConvert.DeserializeObject<JsonResult>(json1));
 
             // Assert
             Assert.That(json2, Is.EqualTo(json1));
@@ -99,7 +99,7 @@ namespace Yargon.JsonRpc
             }";
 
             // Act
-            var result = JsonConvert.DeserializeObject<JsonResult>(json, new JsonResponse.Converter());
+            var result = JsonConvert.DeserializeObject<JsonResult>(json);
 
             // Assert
             var expected = new JsonResult("1", new JValue(7));

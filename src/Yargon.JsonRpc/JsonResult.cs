@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -11,6 +8,7 @@ namespace Yargon.JsonRpc
     /// <summary>
     /// A JSON result.
     /// </summary>
+    [JsonConverter(typeof(JsonDummyConverter))]
     public sealed class JsonResult : JsonResponse
     {
         /// <summary>

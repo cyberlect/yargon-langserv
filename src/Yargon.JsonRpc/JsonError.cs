@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 
@@ -10,6 +7,7 @@ namespace Yargon.JsonRpc
     /// <summary>
     /// A JSON error.
     /// </summary>
+    [JsonConverter(typeof(JsonDummyConverter))]
     public sealed class JsonError : JsonResponse
     {
         /// <summary>

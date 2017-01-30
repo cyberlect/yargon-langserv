@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -17,20 +13,16 @@ namespace Yargon.JsonRpc
         public sealed class Converter : JsonConverter
         {
             /// <inheritdoc />
-            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+            public override bool CanWrite => false;
+
+            /// <inheritdoc />
+            public override bool CanConvert(Type objectType)
             {
                 #region Contract
-                Debug.Assert(writer != null);
-                Debug.Assert(value != null);
-                Debug.Assert(serializer != null);
+                Debug.Assert(objectType != null);
                 #endregion
 
-                if (value is JsonResult)
-                    serializer.Serialize(writer, value, typeof(JsonResult));
-                if (value is JsonError)
-                    serializer.Serialize(writer, value, typeof(JsonError));
-
-                throw new InvalidOperationException("Json response is neither a JsonResult nor a JsonError.");
+                return objectType == typeof(JsonResponse);
             }
 
             /// <inheritdoc />
@@ -43,23 +35,22 @@ namespace Yargon.JsonRpc
                 Debug.Assert(serializer != null);
                 #endregion
 
+                // NOTE: This would recursively invoke this converter on the object to be read.
+                // To prevent this, we attach a dummy converter to JsonResult and JsonError.
                 var jsonObject = JObject.Load(reader);
                 if (jsonObject["result"] != null)
                     return serializer.Deserialize<JsonResult>(jsonObject.CreateReader());
                 if (jsonObject["error"] != null)
                     return serializer.Deserialize<JsonError>(jsonObject.CreateReader());
                 
-                throw new InvalidOperationException("Json response has neither 'result' nor 'error' field.");
+                throw new JsonSerializationException("Json response has neither 'result' nor 'error' field.");
             }
 
             /// <inheritdoc />
-            public override bool CanConvert(Type objectType)
+            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
-                #region Contract
-                Debug.Assert(objectType != null);
-                #endregion
-
-                return objectType == typeof(JsonResponse);
+                // Writing either a JsonResult or a JsonError can just use the default implementation.
+                throw new NotSupportedException();
             }
         }
     }

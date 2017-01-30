@@ -95,7 +95,10 @@ namespace Yargon.JsonRpc
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"{this.Code}: {this.Message}";
+            if (this.Data != null)
+                return $"{this.Code}: {this.Message} -- {this.Data}";
+            else
+                return $"{this.Code}: {this.Message}";
         }
     }
 }
