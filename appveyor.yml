@@ -7,13 +7,13 @@ before_build:
 - ps: dotnet restore --verbosity detailed
 
 test_script:
-- ps: dotnet test -c $env:CONFIGURATION ./test/Yargon.LangServ.Tests
+- ps: dotnet test -c $env:CONFIGURATION ./test/Yargon.LanguageServer.Tests
 
 after_test:
-- ps: dotnet pack -c $env:CONFIGURATION src/Yargon.LangServ/
+- ps: dotnet pack -c $env:CONFIGURATION src/Yargon.LanguageServer/
 
 artifacts:
-- path: 'src/Yargon.LangServ/bin/Release/*.nupkg'
+- path: 'src/Yargon.LanguageServer/bin/Release/*.nupkg'
   name: NuGet Packages
 
 deploy:
