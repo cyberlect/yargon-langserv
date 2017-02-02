@@ -20,19 +20,17 @@
   },
 
   "dependencies": {
+    "Virtlink.Utilib": "1.16.0",
+    "Yargon.JsonRpc": "0.1.0-alpha"
   },
 
   "frameworks": {
-    "netstandard1.0": {
-      "imports": "dnxcore50",
-      "dependencies": {
-        "NETStandard.Library": "1.6.0"
-      }
-    },
     "netstandard1.3": {
       "imports": "dnxcore50",
       "dependencies": {
-        "NETStandard.Library": "1.6.0"
+        "NETStandard.Library": "1.6.0",
+        "System.Net.Primitives": "4.3.0",
+        "System.Net.Sockets": "4.3.0"
       }
     },
     "net45": {
