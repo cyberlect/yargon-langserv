@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Virtlink.Utilib.Threading.Tasks;
+using Yargon.JsonRpc;
 
 namespace Yargon.LanguageServer
 {

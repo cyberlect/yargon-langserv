@@ -1,29 +1,23 @@
 {
   "version": "1.0.0-*",
-
   "title": "Yargon Language Server",
   "copyright": "Copyright - Daniel Pelsmaeker",
   "description": "An implementation of the Language Server Protocol.",
-
   "authors": [ "Daniel Pelsmaeker" ],
-
   "packOptions": {
     "summary": "An implementation of the Language Server Protocol.",
     "tags": [ "cyberlect", "language", "server", "protocol", "virtlink", "lsp", "service" ],
     "projectUrl": "https://github.com/Cyberlect/yargon-langserv/",
     "licenseUrl": "https://github.com/Cyberlect/yargon-langserv/blob/master/License.md",
-
     "repository": {
       "type": "git",
       "url": "git://github.com/Cyberlect/yargon-langserv"
     }
   },
-
   "dependencies": {
-    "Virtlink.Utilib": "1.16.0",
-    "Yargon.JsonRpc": "0.1.0-alpha"
+    "Virtlink.Utilib": "1.17.1",
+    "Yargon.JsonRpc": "0.1.1-alpha"
   },
-
   "frameworks": {
     "netstandard1.3": {
       "imports": "dnxcore50",
@@ -37,5 +31,8 @@
       "dependencies": {
       }
     }
+  },
+  "buildOptions": {
+    "xmlDoc": true
   }
 }
